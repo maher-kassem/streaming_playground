@@ -1,2 +1,7 @@
 # Kafka convenience scripts
-local_kafka/kafka_*
+local_kafka/kafka_**
+
+# standard ignores
+.venv
+.vscode
+**cache**
