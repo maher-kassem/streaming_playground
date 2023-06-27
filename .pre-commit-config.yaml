@@ -1,0 +1,35 @@
+fail_fast: false
+exclude: '(\.pyc$|^sample_data|.+\.(fetch|csv|parquet|sql)$|\.R$|\.csv$|^feature-deployments$|\.png$|\.excalidraw$|^.product$)'
+repos:
+  - repo: https://github.com/ambv/black
+    rev: 22.8.0
+    hooks:
+      - id: black
+        args: [--config=./pyproject.toml]
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+  - repo: https://github.com/pycqa/flake8
+    rev: 5.0.4
+    hooks:
+      - id: flake8
+        args: [--config, .flake8]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      # -------------------------------
+      # GENERAL FILE FORMATTING
+      # -------------------------------
+      # trims trailing whitespace, preserving in case of Markdown hard linebreaks
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+        exclude: '\.dbc$'
+      # make sure files end in single newline only
+      - id: end-of-file-fixer
+        exclude: '\.dbc$'
+      # - id: check-executables-have-shebangs
+      # only allow \n (i.e. lf) for line-endings
+      - id: mixed-line-ending
+        args: [--fix=lf]
+        exclude: '\.dbc$'

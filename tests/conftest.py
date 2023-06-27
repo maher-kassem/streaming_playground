@@ -1,6 +1,5 @@
 import pytest
-from pyspark.sql import SparkSession, DataFrame
-
+from pyspark.sql import DataFrame, SparkSession
 
 SCALA_VERSION = "2.12"
 SPARK_VERSION = "3.4.1"
