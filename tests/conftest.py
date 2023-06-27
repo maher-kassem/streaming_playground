@@ -1,7 +1,7 @@
 import pytest
 from pyspark.sql import SparkSession
 
-from streaming_playground.create_samples import sample_spark_df
+from streaming_playground.create_samples import sample_spark_df, two_extra_rows
 
 SCALA_VERSION = "2.12"
 SPARK_VERSION = "3.4.1"
@@ -46,3 +46,8 @@ def spark():
 @pytest.fixture(scope="session")
 def spark_df_sample(spark: SparkSession):
     return sample_spark_df(spark)
+
+
+@pytest.fixture(scope="session")
+def spark_df_two_extra_rows(spark: SparkSession):
+    return two_extra_rows(spark)

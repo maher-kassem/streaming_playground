@@ -26,3 +26,16 @@ def sample_spark_df(spark: SparkSession) -> DeltaTable:
     )
 
     return df
+
+
+def two_extra_rows(spark: SparkSession) -> DeltaTable:
+    booking_no = [11, 12]
+    route_code = ["J", "K"]
+    valid_from_datetime = ["2020-01-11 00:00:00", "2020-01-12 00:00:00"]
+    data = zip(booking_no, route_code, valid_from_datetime)
+
+    extra_rows = spark.createDataFrame(
+        data, ["booking_no", "route_code", "valid_from_datetime"]
+    )
+
+    return extra_rows
