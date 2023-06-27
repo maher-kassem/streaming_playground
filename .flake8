@@ -1,0 +1,5 @@
+[flake8]
+select = E,F,W504
+ignore = I, E203, E402, E501, W503
+max-line-length = 118
+exclude = .git

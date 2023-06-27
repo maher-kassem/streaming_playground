@@ -6,7 +6,7 @@ from delta import DeltaTable
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
 
-from streaming_playground.spark_delta_to_delta import spark_delta_to_delta
+from streaming_playground.spark_delta_to_delta import delta_to_delta
 
 
 def test_delta_to_delta(
@@ -21,7 +21,7 @@ def test_delta_to_delta(
         spark_df_sample.write.format("delta").mode("overwrite").save(source_path)
 
         # Stream source to destination
-        _ = spark_delta_to_delta(
+        _ = delta_to_delta(
             spark,
             source_path=source_path,
             destination_path=destination_path,
@@ -38,7 +38,7 @@ def test_delta_to_delta(
         spark_df_two_extra_rows.write.format("delta").mode("append").save(source_path)
 
         # Stream source to destination again
-        _ = spark_delta_to_delta(
+        _ = delta_to_delta(
             spark,
             source_path=source_path,
             destination_path=destination_path,

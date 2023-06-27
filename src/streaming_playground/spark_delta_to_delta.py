@@ -2,8 +2,11 @@ from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
 
 
-def spark_delta_to_delta(
-    spark: SparkSession, source_path, destination_path, checkpoint_filename
+def delta_to_delta(
+    spark: SparkSession,
+    source_path: str,
+    destination_path: str,
+    checkpoint_filename: str,
 ):
     def _append_to_sink(df: DataFrame, batch_id: int):
         df = df.withColumn("_batch_id", F.lit(batch_id)).withColumn(

@@ -17,7 +17,7 @@ ARTIFACTS_SPARK_33 = [
     # "com.microsoft.sqlserver:mssql-jdbc:11.2.1.jre11",
     f"org.apache.spark:spark-avro_{SCALA_VERSION}:{SPARK_VERSION}",
     f"org.apache.spark:spark-sql-kafka-0-10_{SCALA_VERSION}:{SPARK_VERSION}",
-    # f"org.apache.spark:spark-token-provider-kafka-0-10_{SCALA_VERSION}:{SPARK_VERSION}",
+    f"org.apache.spark:spark-token-provider-kafka-0-10_{SCALA_VERSION}:{SPARK_VERSION}",
     # "org.wildfly.openssl:wildfly-openssl:2.2.5.Final",
     # "com.azure.cosmos.spark:azure-cosmos-spark_3-3_2-12:4.15.0",
 ]
