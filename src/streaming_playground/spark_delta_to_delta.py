@@ -2,7 +2,7 @@ from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
 
 
-def stream_delta_to_delta(
+def spark_delta_to_delta(
     spark: SparkSession, source_path, destination_path, checkpoint_filename
 ):
     def _append_to_sink(df: DataFrame, batch_id: int):

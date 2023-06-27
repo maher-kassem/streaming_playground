@@ -6,7 +6,7 @@ from delta import DeltaTable
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql import functions as F
 
-from streaming_playground.spark_delta_to_delta import stream_delta_to_delta
+from streaming_playground.spark_delta_to_delta import spark_delta_to_delta
 
 
 def test_delta_to_delta(
@@ -21,7 +21,7 @@ def test_delta_to_delta(
         spark_df_sample.write.format("delta").mode("overwrite").save(source_path)
 
         # Stream source to destination
-        _ = stream_delta_to_delta(
+        _ = spark_delta_to_delta(
             spark,
             source_path=source_path,
             destination_path=destination_path,
@@ -38,7 +38,7 @@ def test_delta_to_delta(
         spark_df_two_extra_rows.write.format("delta").mode("append").save(source_path)
 
         # Stream source to destination again
-        _ = stream_delta_to_delta(
+        _ = spark_delta_to_delta(
             spark,
             source_path=source_path,
             destination_path=destination_path,
@@ -56,9 +56,8 @@ def test_delta_to_delta(
         dt.optimize().executeCompaction()
         assert len(glob(f"{destination_path}/*.parquet")) == 3
 
-        # Vacuum
+        # Vacuum with zero retention, should keep only the compacted file
         spark.conf.set("spark.databricks.delta.vacuum.parallelDelete.enabled", "true")
         spark.conf.set("spark.databricks.delta.retentionDurationCheck.enabled", "false")
         dt.vacuum(0)
         assert len(glob(f"{destination_path}/*.parquet")) == 1
-        print()
