@@ -5,3 +5,5 @@ local_kafka/kafka_**
 .venv
 .vscode
 **cache**
+
+spark-warehouse
